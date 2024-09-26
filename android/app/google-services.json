@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "272745335573",
+    "project_id": "firesbasecheck",
+    "storage_bucket": "firesbasecheck.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272745335573:android:b3f688502eee492a69b71c",
+        "android_client_info": {
+          "package_name": "com.example.dealsdray"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOG_OVmCerE_XH5Ouj5oguWFllMW1X1kE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId">272745335573</string>
+    <string name="google_api_key">AIzaSyBOG_OVmCerE_XH5Ouj5oguWFllMW1X1kE</string>
+    <string name="google_app_id">1:272745335573:android:b3f688502eee492a69b71c</string>
+    <string name="project_id">firesbasecheck</string>
+</resources>
