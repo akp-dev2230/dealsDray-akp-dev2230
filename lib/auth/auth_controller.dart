@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -39,9 +38,18 @@ class AuthController extends GetxController{
   Future<String> fetchData({context}) async{
     try{
       final res = await http.get(Uri.parse('http://devapiv4.dealsdray.com/api/v2/user/otp/verification'));
-      final data = jsonDecode(res.body);
-      if(data['cod'] == 200){
-        response = data['otp'];
+
+      if(res.statusCode == 200){
+        final data = jsonDecode(res.body);
+        if(data['cod'] == 200 && data.containsKey('otp')){
+          response = data['otp'];
+        }else {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Error fetching OTP")),);
+        }
+      }else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Error: ${res.statusCode} - ${res.reasonPhrase}")),
+        );
       }
     }catch(e){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));

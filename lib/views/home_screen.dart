@@ -56,9 +56,9 @@ class HomeScreen extends StatelessWidget {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    promoBanner(imagePath: 'assets/images/shoes.jpg', onTap: (){}),
-                    promoBanner(imagePath: 'assets/images/cosmetics.jpg', onTap: (){}),
-                    promoBanner(imagePath: 'assets/images/perfume.jpg', onTap: (){}),
+                    promoBanner(imagePath: 'assets/images/shoes.jpeg', onTap: (){}),
+                    promoBanner(imagePath: 'assets/images/cosmetics.jpeg', onTap: (){}),
+                    promoBanner(imagePath: 'assets/images/perfume.jpeg', onTap: (){}),
                   ],
                 ),
               ),

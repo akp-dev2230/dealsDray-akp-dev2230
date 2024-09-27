@@ -14,14 +14,21 @@ class Verify extends StatefulWidget {
 class _VerifyState extends State<Verify> {
 
   var controller = Get.put(AuthController());
+  late final String _resCheck;
+  int count = 30;
+
+  TextEditingController otpController1 = TextEditingController();
+  TextEditingController otpController2 = TextEditingController();
+  TextEditingController otpController3 = TextEditingController();
+  TextEditingController otpController4 = TextEditingController();
 
   @override
   void initState() {
     changeTimer();
+    fetchOTP();
     super.initState();
   }
 
-  int count = 30;
 
   void changeTimer(){
     Future.delayed(const Duration(seconds: 1),(){
@@ -32,6 +39,20 @@ class _VerifyState extends State<Verify> {
         }
       });
     });
+  }
+
+  void fetchOTP() async{
+    _resCheck = await controller.fetchData(context: context);
+    if(_resCheck.isNotEmpty && _resCheck.length >= 4){
+      setState(() {
+        otpController1.text = _resCheck[0];
+        otpController2.text = _resCheck[1];
+        otpController3.text = _resCheck[2];
+        otpController4.text = _resCheck[3];
+      });
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Invalid OTP received")));
+    }
   }
 
   @override
@@ -92,10 +113,10 @@ class _VerifyState extends State<Verify> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  otpBox(),
-                  otpBox(),
-                  otpBox(),
-                  otpBox(),
+                  otpBox(controller: otpController1),
+                  otpBox(controller: otpController2),
+                  otpBox(controller: otpController3),
+                  otpBox(controller: otpController4),
                 ],
               ),
               Row(
@@ -152,7 +173,7 @@ class _VerifyState extends State<Verify> {
   }
 }
 
-Widget otpBox() {
+Widget otpBox({controller}) {
   return Container(
     width: 50,
     height: 50,
@@ -162,6 +183,7 @@ Widget otpBox() {
     ),
     child: Center(
       child: TextFormField(
+        controller: controller,
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
         maxLength: 1,
